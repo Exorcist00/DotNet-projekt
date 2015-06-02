@@ -25,7 +25,7 @@ namespace projekt
             {
                 JObject jobj = JObject.Parse(stream);
                 JArray jarr = JArray.Parse(jobj["statuses"].ToString());
-                Console.WriteLine(jarr.Count().ToString());
+                
                 for (int i = 0; i < jarr.Count(); i++)
                 {
                     var obj = new ObiektDanych();
@@ -33,11 +33,13 @@ namespace projekt
 
                     JObject user = JObject.Parse(twitt["user"].ToString());
                     obj.Name = user["name"].ToString();
+                    
 
                     JObject status = JObject.Parse(twitt["retweeted_status"].ToString());
                     obj.Date = status["created_at"].ToString();
                     obj.Text = status["text"].ToString();
                     arr.Add(obj);
+                    if (i == 0) Console.WriteLine(obj.Name + " " + obj.Date + "" + obj.Text);
                     Console.WriteLine(obj.Name+" "+obj.Date+""+obj.Text);
                 }
 

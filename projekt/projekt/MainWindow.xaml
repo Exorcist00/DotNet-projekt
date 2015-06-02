@@ -1,0 +1,68 @@
+﻿<Window x:Class="projekt.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Czytnik Twittera" Height="400" Width="500">
+    <Grid Margin="5,5,5,5" ShowGridLines="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBox Name="SearchTag" Grid.Column="0" Grid.Row="0" DockPanel.Dock="Left" Margin="5" />
+        <Button Grid.Column="1" Margin="5" DockPanel.Dock="Right" Click="SzukajWiadomosci" FontSize="16">
+            Szukaj
+        </Button>
+
+
+        <!--   <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >-->
+        <ListBox Grid.Column="0" Grid.Row="1" Name="_list" Margin="5" ItemsSource="{Binding Kolekcja}" SelectedItem="{Binding WybranyObiekt}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" SharedSizeGroup="Names" />
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                            
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <!-- </ScrollViewer> -->
+
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Twitt" DataContext="{Binding ElementName=_list, Path=SelectedItem}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                   
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="5" Content="Name"  />
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding Name}" />
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="5" Content="Date" />
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding Date}" />
+
+                <Label Grid.Row="2" Grid.Column="0" Margin="5" Content="Text" />
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding Text}" />
+
+               
+            </Grid>
+        </GroupBox>
+        <Label Name="Czas" Grid.Row="2" Grid.Column="0" Margin="2"/>
+    </Grid>
+</Window>

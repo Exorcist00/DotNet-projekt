@@ -33,9 +33,16 @@ namespace projekt
         public MainWindow()
         {
             InitializeComponent();
-
+            
+            Kolekcja = new List<ObiektDanych>
+				{
+					new ObiektDanych { Name = "A", Date = "2015-01-01", Text = "Twitt1" },
+					new ObiektDanych { Name = "B", Date = "2015-01-02", Text = "Twitt2" },
+					new ObiektDanych { Name = "C", Date = "2015-01-03", Text = "Twitt3" },
+					new ObiektDanych { Name = "D", Date = "2015-01-04", Text = "Twitt4" }
+				};
+            
             DataContext = this;
-           // Czas.Content = "Start";
             Thread zegar = new Thread(Licz);
             zegar.Start();
 
@@ -46,7 +53,9 @@ namespace projekt
             {
                 this.Dispatcher.Invoke((Action)(() =>
                 {
+                    if(i!=-1)
                     Czas.Content = "Liczba sekund od startu: " + i;
+                    else Czas.Content = "Minęła ponad minuta.";
                 }));
             }
             catch(TaskCanceledException e)
@@ -58,12 +67,14 @@ namespace projekt
         public void Licz()
         {
             var licznik = 0;
-            while (true)
+            while (licznik<60)
             {
                 Thread.Sleep(1000);
                 licznik=licznik+1;
                 aktualizuj(licznik);
             }
+            aktualizuj(-1);
+            
         } 
         private void SzukajWiadomosci(object sender, RoutedEventArgs e)
         {

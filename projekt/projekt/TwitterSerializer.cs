@@ -25,6 +25,7 @@ namespace projekt
             {
                 JObject jobj = JObject.Parse(stream);
                 JArray jarr = JArray.Parse(jobj["statuses"].ToString());
+                Console.WriteLine(jarr.Count().ToString());
                 for (int i = 0; i < jarr.Count(); i++)
                 {
                     var obj = new ObiektDanych();
@@ -41,6 +42,10 @@ namespace projekt
                 }
 
             }catch(JsonReaderException e){
+                Console.WriteLine(e.ToString());
+            }
+            catch(NullReferenceException e)
+            {
                 Console.WriteLine(e.ToString());
             }
            

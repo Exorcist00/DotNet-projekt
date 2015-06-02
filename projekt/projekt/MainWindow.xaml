@@ -19,24 +19,9 @@
         </Button>
 
 
-        <!--   <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" >-->
-        <ListBox Grid.Column="0" Grid.Row="1" Name="_list" Margin="5" ItemsSource="{Binding Kolekcja}" SelectedItem="{Binding WybranyObiekt}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" SharedSizeGroup="Names" />
-                            </Grid.ColumnDefinitions>
+       
+        <ListBox Grid.Column="0" Grid.Row="1" Name="_list" Margin="5" ItemsSource="{Binding Kolekcja}" SelectedItem="{Binding WybranyObiekt}"/>
 
-                            <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                            
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <!-- </ScrollViewer> -->
 
         <GroupBox Grid.Row="1" Grid.Column="1" Header="Twitt" DataContext="{Binding ElementName=_list, Path=SelectedItem}">
             <Grid>
